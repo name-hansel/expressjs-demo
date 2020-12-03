@@ -1,0 +1,20 @@
+var express = require("express");
+var app = express();
+
+var requestTime = function (req, res, next) {
+  req.requestTime = Date.now();
+  next();
+};
+
+app.use(requestTime);
+
+app.get("/", function (req, res) {
+  const dateObject = new Date(req.requestTime);
+
+  var responseText = "Hello World!<br>";
+  responseText +=
+    "<small>Requested at: " + dateObject.toLocaleString() + "</small>";
+  res.send(responseText);
+});
+
+app.listen(3000);
