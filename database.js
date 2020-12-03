@@ -1,16 +1,8 @@
 const express = require("express");
 const app = express();
 
-let { username, password, host, port, database } = require("./config");
-
 const { Pool } = require("pg");
-const pool = new Pool({
-  user: username,
-  host,
-  database,
-  password,
-  port,
-});
+const pool = new Pool(require("./config"));
 
 app.get("/", async (req, res) => {
   let result = await pool.query("SELECT * FROM demotable");
