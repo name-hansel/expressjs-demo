@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
+var books = require("./books");
 const port = 3000;
+
+app.use("/books", books);
+
 app.get("/", (req, res) => {
   res.send("Homepage");
 });

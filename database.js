@@ -5,6 +5,7 @@ const { Pool } = require("pg");
 const pool = new Pool(require("./config"));
 
 app.get("/", async (req, res) => {
+  // demotable contains columns id, name
   let result = await pool.query("SELECT * FROM demotable");
   res.json(result.rows);
 });
